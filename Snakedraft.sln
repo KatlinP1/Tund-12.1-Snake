@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snakedraft", "Snakedraft\Snakedraft.csproj", "{90025D51-5FED-49B0-B607-77B742FA125A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Point", "Point\Point.csproj", "{17371D76-4DE7-43E5-87F7-451D17ED4D74}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90025D51-5FED-49B0-B607-77B742FA125A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90025D51-5FED-49B0-B607-77B742FA125A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90025D51-5FED-49B0-B607-77B742FA125A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90025D51-5FED-49B0-B607-77B742FA125A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17371D76-4DE7-43E5-87F7-451D17ED4D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17371D76-4DE7-43E5-87F7-451D17ED4D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17371D76-4DE7-43E5-87F7-451D17ED4D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17371D76-4DE7-43E5-87F7-451D17ED4D74}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
