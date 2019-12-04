@@ -13,6 +13,32 @@ namespace Point
                 point.Draw();
             }
         }
+
+        public bool IsHitByPoint(MyPoint point)
+        {
+            foreach (MyPoint p in pointList)
+            {
+                if (p.IsHit(point))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsHitByFigure(Figure figure)
+        {
+            foreach (MyPoint point in pointList)
+            {
+                if (figure.IsHitByPoint(point))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
         
     }
     

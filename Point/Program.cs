@@ -59,80 +59,86 @@ namespace Point
             
         }
 
+        public bool IsHit(MyPoint point)
+        {
+            return point.x == x && point.y == y;
+        }
+
     }
-    
-    
+
     class Program
     {
         static void Main(string[] args)
         {
-            //Ümbrise tegemine
-            //Visualstudio jaoks, kui on eraldi aken, kus asju kuvatakse
-            //Console.SetWindowSize(80,25);
-            //Console.SetBufferSize(80,25);
+            //Seinte/äärte tegemine
+            //Windows arvuti jaoks, kui on eraldi aken, kus asju kuvatakse, macis need kordinaadid ei tööta:
+            //Console.SetWindowSize(80,25); ja Console.SetBufferSize(80,25);
             
-            Horisontalline topLine=new Horisontalline(0,78,0,'*');
-            topLine.DrawFigure();
-            Horisontalline bottomLine= new Horisontalline(0,78,24,'*');
-            bottomLine.DrawFigure();
-            Verticalline leftLine= new Verticalline(0,24,0, '*');
-            leftLine.DrawFigure();
-            Verticalline righLine= new Verticalline(0,24,78, '*');
-            righLine.DrawFigure();
+            Walls walls = new Walls(80,25);
+            walls.DrawWalls();
             
             //ussi punktid
+            
             MyPoint tail= new MyPoint(6,5,'*');
             Snake snake= new Snake(tail,4,Direction.RIGHT);
             snake.DrawFigure();
             
+            FoodCatering foodCatered =new FoodCatering(80, 24, '$');
+            MyPoint food = foodCatered.CaterFood();
+            food.Draw();
+            
+            
+            
             
             while (true)
             {
+
+                if (walls.IsHitByFigure(snake))
+                {
+                    break;
+                }
                 
+                if (snake.Eat(food))
+                {
+                    food = foodCatered.CaterFood();
+                    food.Draw();
+                    
+                }
+                else
+                {
+                    snake.MoveSnake();
+                }
+                Thread.Sleep(200);
                 
-                ConsoleKeyInfo key = Console.ReadKey();
-                snake.ReadUserKey(key.Key);
+                if (Console.KeyAvailable==true)
+                {
+                    var key = Console.ReadKey(true);
+                    snake.ReadUserKey(key.Key); 
+                }
                 
-                
-                snake.MoveSnake();
-                Thread.Sleep(100);
             }
             
-            
-            /*Horisontalline hrLine= new Horisontalline(20,80,20,'*');
-            hrLine.DrawHorizontalLine();
-            
-            Verticalline vrLine= new Verticalline(20,80,,'*');
-            vrLine.DrawVerticalLine();*/
-            
-            /*for(int i=5; i<10;i++)
-            {
-                MyPoint newPoint=new MyPoint(i,5,'*');
-                newPoint.Draw();
-                MyPoint newPoint2=new MyPoint(5,i,'*');
-                newPoint2.Draw();
-            }*/
-            
-            
-            /*Point p1=new Point(5,1,'*');
-            p1.Draw();
-            Point p2=new Point(5,2,'*');
-            p2.Draw();
-            Point p3=new Point(5,3,'*');
-            p3.Draw();
-            Point p4=new Point(5,4,'*');
-            p4.Draw();
-            Point p5=new Point(5,5,'*');
-            p5.Draw();*/
-            
-            
-            
+            WriteGameOver();
+        }
+        
+        public static void WriteGameOver()
+        {
+            Console.Clear();
+            int xOffset = 35;
+            int yOffset = 8;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(xOffset,yOffset++);
+            ShowMessage("__________", xOffset,yOffset++);
+            ShowMessage("GAME OVER", xOffset, yOffset++);
+            ShowMessage("__________", xOffset,yOffset++);
+                
         }
 
-        public static void Draw(int x, int y, char symbol)
+        public static void ShowMessage(string text, int xOffset, int yOffset)
         {
-            Console.SetCursorPosition(x,y);
-            Console.Write(symbol);
+            Console.SetCursorPosition(xOffset, yOffset);
+            Console.WriteLine(text);
         }
+        
     }
 }
